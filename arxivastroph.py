@@ -2,6 +2,9 @@ from flask import Flask, jsonify, Response
 import feedparser
 from html.parser import HTMLParser
 import dateutil.parser
+import datetime
+import logging
+import json
 
 ARXIV_ASTROPH_URL = "http://arxiv.org/rss/astro-ph?version=2.0"
 
@@ -32,37 +35,78 @@ class Parser(HTMLParser):
         if self.recording==0 and self.recording_p==1:
             self.summary = data
 
-def generate_mainText_from_summary(entry_summary_html):
+class ArticleEntry:
     """
-        convert the "summary" from arxiv rss (v2) into mainText format.
+        a class for an article entry
     """
-    parser = Parser()
-    parser.feed(entry_summary_html)
-    author_list = list(parser.authors)
-    title = entry['title'].split(' (arXiv')[0]
-    summary = parser.summary
-    Nauthor = len(author_list)
+    Nauthor_display = 3 # only show the first three authors
+
+    def __init__(self, entry, updateDate_str):
+        self.entry = entry
+        self.id = self.entry['id']
+        self.title = self.entry['title'].split(' (arXiv')[0]
+        self.link = self.entry['link']
+        self.updateDate = self.generate_updateDate(updateDate_str)
+
+        self.parser = Parser()
+        self.parser.feed(self.entry['summary'])
+        self.summary = self.process_summary(self.parser.summary)
+
+        self.generate_author_list()
+        self.maintext = self.generate_mainText_from_summary()
+
+    def generate_updateDate(self, updateDate_str):
+        updateDate_datetime = dateutil.parser.parse(updateDate_str)
+        updateDate_datetime += datetime.timedelta(seconds=int(self.id.split('.')[-1]))
+
+        return updateDate_datetime.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+
+    def generate_author_list(self):
+        self.author_list_full = list(self.parser.authors)
+        self.Nauthor = len(self.author_list_full)
+
+        na_short = min(self.Nauthor, self.Nauthor_display) # show 3 or less authors
+        self.author_list_short = []
+        for i in range(na_short):
+            self.author_list_short.append(self.author_list_full[i])
+
+        if na_short < self.Nauthor:
+            self.author_list_short.append("et al")
     
-    return summary
+    def generate_mainText_from_summary(self):
+        """
+            convert the "summary" from arxiv rss (v2) into mainText format.
+        """
+        
+        maintext = self.title + "by " + ", ".join(self.author_list_short) + ". " \
+            + self.summary
 
+        return maintext
 
-def construct_alexa_dict(entry, updateDate):
+    def process_summary(self, raw_summary):
+        return raw_summary.replace("$"," ") \
+            .replace("Msun", " solar masses") \
+            .replace("<", "less than") \
+            .replace(">", "greater than") \
+            .replace("\n", " ") \
+            .replace("~", " about ")
+
+def construct_alexa_dict(entry, updateDate_str):
     """
         1st version without author names..
         
         Example
     """
+    this = ArticleEntry(entry, updateDate_str)
     data_dict = {}
-    data_dict["uid"] = entry['id']
-    data_dict["updateDate"] = updateDate
-    data_dict["titleText"] = entry['title'].split(' (arXiv')[0]
-    data_dict["redirectionUrl"] = entry['link']
-    data_dict["mainText"] = generate_mainText_from_summary(entry['summary'])
+    data_dict["uid"] = this.id
+    data_dict["updateDate"] = this.updateDate
+    data_dict["titleText"] = this.title
+    data_dict["redirectionUrl"] = this.link
+    data_dict["mainText"] = this.maintext
     
     return data_dict
 
-import logging
-import json
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -76,7 +120,7 @@ def main():
     for ent in feed["entries"]:
         entrylist.append(ent)
 
-    json_list = [ construct_alexa_dict(entrylist[i], dateutil.parser.parse(feed['updated']).strftime("%Y-%m-%dT%H:%M:%S.%fZ")) for i in range(5)]
+    json_list = [ construct_alexa_dict(entrylist[i], feed['updated']) for i in range(5)]
     output = json.dumps(json_list)
 
 # https://stackoverflow.com/questions/11945523/forcing-application-json-mime-type-in-a-view-flask
