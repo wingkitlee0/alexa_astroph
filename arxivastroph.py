@@ -13,7 +13,7 @@ class Parser(HTMLParser):
         HTMLParser.__init__(self)
         self.recording = 0
         self.recording_p = 0
-        self.authors = set()
+        self.authors = []
         self.summary = ""
 
     def handle_starttag(self, tag, attrs):
@@ -31,7 +31,7 @@ class Parser(HTMLParser):
     def handle_data(self, data):
         if self.recording==1:
             self.data = data
-            self.authors.add(data)
+            self.authors.append(data)
         if self.recording==0 and self.recording_p==1:
             self.summary = data
 
