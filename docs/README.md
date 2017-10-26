@@ -17,3 +17,7 @@ This page is [https://wingkitlee0.github.io/alexa_astroph/](https://wingkitlee0.
 ## Guide to Setup..
 
 1. We choose `AWS Lambda` to host and run our python script (Flask app) for conversion. So we will first need to setup a way to upload and deploy a Flask app to AWS. This can be done using `zagga`.
+
+## Links
+
+- [https://developer.amazon.com/blogs/post/8e8ad73a-99e9-4c0f-a7b3-60f92287b0bf/New-Alexa-Tutorial-Deploy-Flask-Ask-Skills-to-AWS-Lambda-with-Zappa](New Alexa Tutorial: Deploy Flask-Ask Skills to AWS Lambda with Zappa)
