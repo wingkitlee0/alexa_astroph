@@ -1,37 +1,14 @@
-## Welcome to GitHub Pages
+## Welcome to Astro-ph for Alexa Flash Briefing
 
-You can use the [editor on GitHub](https://github.com/wingkitlee0/alexa_astroph/edit/master/docs/README.md) to maintain and preview the content for your website in Markdown files.
+This is a simple project to allow you to *listen* to your favorite arXiv category on Amazon Echo device. This is done by using the "Flash Briefing" function on Alexa.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+There are a few components for this to work:
 
-### Markdown
+1. On AWS Lambda, a python script converts the RSS feeds from arXiv into a JSON file that is readable by Alexa.
+2. The python script itself is a Flask application. This is because we need to apply Alexa Flash Briefing with a web link to the custom-formated JSON file.
+3. Because we are using the simple Flash Briefing instead of Alexa Skill Kits, basically we are not able to change the following:
+    - the number of articles to be read
+    - the category
+    - many others things...
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/wingkitlee0/alexa_astroph/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+This page is [https://wingkitlee0.github.io/alexa_astroph/]
