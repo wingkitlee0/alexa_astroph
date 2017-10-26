@@ -11,4 +11,4 @@ There are a few components for this to work:
     - the category
     - many others things...
 
-This page is [https://wingkitlee0.github.io/alexa_astroph/]
+This page is [https://wingkitlee0.github.io/alexa_astroph/](https://wingkitlee0.github.io/alexa_astroph/)
