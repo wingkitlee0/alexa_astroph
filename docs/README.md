@@ -1,5 +1,7 @@
 # Welcome to Astro-ph for Alexa Flash Briefing
 
+![Astro-ph Logo](../Images/Logo128.png)
+
 This is a simple project to allow you to *listen* to your favorite arXiv category on Amazon Echo device. This is done by using the "Flash Briefing" function on Alexa.
 
 There are a few components for this to work:
@@ -26,3 +28,5 @@ This page is [https://wingkitlee0.github.io/alexa_astroph/](https://wingkitlee0.
 ## Links
 
 - [New Alexa Tutorial: Deploy Flask-Ask Skills to AWS Lambda with Zappa](https://developer.amazon.com/blogs/post/8e8ad73a-99e9-4c0f-a7b3-60f92287b0bf/New-Alexa-Tutorial-Deploy-Flask-Ask-Skills-to-AWS-Lambda-with-Zappa)
+
+
