@@ -16,10 +16,10 @@ This page is [https://wingkitlee0.github.io/alexa_astroph/](https://wingkitlee0.
 
 ## Guide to Setup..
 
-1. We choose `AWS Lambda` to host and run our python script (Flask app) for conversion. So we will first need to setup a way to upload and deploy a Flask app to AWS. This can be done using `zagga`.
+1. We choose `AWS Lambda` to host and run our python script (Flask app) for conversion. So we will first need to setup a way to upload and deploy a Flask app to AWS. This can be done using `zappa`.
 
-2. After the whole setup process with `zagga`, there should be a link for the lambda function, like this
-[https://atawkf2zyd.execute-api.us-east-1.amazonaws.com/dev](https://atawkf2zyd.execute-api.us-east-1.amazonaws.com/dev). The output is basically some json document that satisfies the Alexa Flash Briefing format.
+2. After the whole setup process with `zappa`, there should be a link for the lambda function, like this
+[https://atawkf2zyd.execute-api.us-east-1.amazonaws.com/dev](https://atawkf2zyd.execute-api.us-east-1.amazonaws.com/dev). The output is basically some json document that satisfies the Alexa Flash Briefing [format](https://developer.amazon.com/docs/flashbriefing/flash-briefing-skill-api-feed-reference.html).
 
 3. Then we can use this link for the Alexa skill.
 
