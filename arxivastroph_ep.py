@@ -6,7 +6,7 @@ import datetime
 import logging
 import json
 
-ARXIV_ASTROPH_URL = "http://arxiv.org/rss/astro-ph?version=2.0"
+ARXIV_ASTROPH_URL = "http://arxiv.org/rss/astro-ph.EP?version=2.0"
 
 class Parser(HTMLParser):
     def __init__(self):

@@ -20,4 +20,4 @@ This page is [https://wingkitlee0.github.io/alexa_astroph/](https://wingkitlee0.
 
 ## Links
 
-- [https://developer.amazon.com/blogs/post/8e8ad73a-99e9-4c0f-a7b3-60f92287b0bf/New-Alexa-Tutorial-Deploy-Flask-Ask-Skills-to-AWS-Lambda-with-Zappa](New Alexa Tutorial: Deploy Flask-Ask Skills to AWS Lambda with Zappa)
+- [New Alexa Tutorial: Deploy Flask-Ask Skills to AWS Lambda with Zappa](https://developer.amazon.com/blogs/post/8e8ad73a-99e9-4c0f-a7b3-60f92287b0bf/New-Alexa-Tutorial-Deploy-Flask-Ask-Skills-to-AWS-Lambda-with-Zappa)
