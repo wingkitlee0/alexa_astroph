@@ -2,6 +2,8 @@
 
 ![Astro-ph Logo](../Images/Logo128.png)
 
+![]("https://raw.githubusercontent.com/wingkitlee0/alexa_astroph/master/Images/Logo128.png")
+
 This is a simple project to allow you to *listen* to your favorite arXiv category on Amazon Echo device. This is done by using the "Flash Briefing" function on Alexa.
 
 There are a few components for this to work:
