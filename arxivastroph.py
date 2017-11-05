@@ -93,9 +93,10 @@ class ArticleEntry:
             .replace("\\rm", " ") \
             .replace("\\", " ") \
             .replace("sim", "about") \
-            .replace("mu m", "millimeter") \
+            .replace("mu m", "micro-meters") \
             .replace("_{", " ") \
-            .replace("}", " ")
+            .replace("}", " ") \
+            .replace("_", " ")
             
 
 def construct_alexa_dict(entry, updateDate_str):
